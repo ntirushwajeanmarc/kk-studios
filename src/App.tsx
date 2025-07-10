@@ -1573,7 +1573,7 @@ function App() {
             viewport={{ once: true }}
             className="border-t border-gray-800 pt-6 text-center text-gray-400"
           >
-            <p>&copy; {new Date().getFullYear()} KK Studios • Designed with ❤️ by Dev@Michou • All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} KK Studios • Designed by CircuitNotion • All rights reserved.</p>
           </motion.div>
         </div>
       </motion.footer>
