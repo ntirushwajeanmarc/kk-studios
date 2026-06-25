@@ -3,6 +3,9 @@ import { FaInstagram, FaTwitter, FaSoundcloud, FaYoutube, FaPlay, FaPause, FaVol
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 
 function App() {
+  const navigationItems = ['About', 'Production', 'Clients', 'Booking', 'Gallery', 'News', 'Contact'];
+  const sessionTypes = ['Recording', 'Mixing', 'Mastering', 'Beat Production', 'Studio Rental', 'Artist Development'];
+
   const slides = [
     '/assets/image2.jpg',
     '/assets/kk.png',
@@ -15,7 +18,7 @@ function App() {
   ];
 
   // Contact form state and logic
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', sessionType: '', preferredDate: '', message: '' });
   const [submissionMessage, setSubmissionMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
   
@@ -39,21 +42,21 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.name || !formData.email || !formData.sessionType || !formData.message) {
       setSubmissionMessage('❌ Please fill out all fields.');
       setSubmitted(false);
       return;
     }
     setTimeout(() => {
-      setSubmissionMessage('✅ Your message was submitted successfully!');
+      setSubmissionMessage('✅ Your booking request was submitted successfully!');
       setSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', sessionType: '', preferredDate: '', message: '' });
     }, 1000);
   };
 
@@ -244,7 +247,7 @@ function App() {
         
         {/* Desktop Menu */}
         <div className="hidden lg:flex text-sm font-bold uppercase tracking-wide">
-          {['About', 'Production', 'Clients', 'Gallery', 'News', 'Contact'].map((item, index) => (
+          {navigationItems.map((item, index) => (
             <motion.a
               key={item}
               href={`#${item.toLowerCase()}`}
@@ -281,7 +284,7 @@ function App() {
             className="fixed inset-y-0 right-0 w-64 bg-black/95 backdrop-blur-md z-30 lg:hidden"
           >
             <div className="flex flex-col pt-20 px-6 space-y-6">
-              {['About', 'Production', 'Clients', 'Gallery', 'News', 'Contact'].map((item, index) => (
+              {navigationItems.map((item, index) => (
                 <motion.a
                   key={item}
                   href={`#${item.toLowerCase()}`}
@@ -345,20 +348,22 @@ function App() {
             transition={{ delay: 2, duration: 1 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <motion.button
+            <motion.a
+              href="#booking"
               whileHover={{ scale: 1.05, backgroundColor: "#ef4444" }}
               whileTap={{ scale: 0.95 }}
               className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 font-bold tracking-wide transition-all duration-300"
             >
               BOOK A SESSION
-            </motion.button>
-            <motion.button
+            </motion.a>
+            <motion.a
+              href="#production"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 font-bold tracking-wide transition-all duration-300"
             >
               LISTEN TO OUR WORK
-            </motion.button>
+            </motion.a>
           </motion.div>
         </motion.div>
         
@@ -877,14 +882,132 @@ function App() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <motion.button
+          <motion.a
+            href="#booking"
             whileHover={{ scale: 1.05, backgroundColor: "#1f2937" }}
             whileTap={{ scale: 0.95 }}
-            className="bg-black text-white px-12 py-4 rounded-full font-bold text-lg tracking-wide hover:shadow-xl transition-all duration-300"
+            className="inline-block bg-black text-white px-12 py-4 rounded-full font-bold text-lg tracking-wide hover:shadow-xl transition-all duration-300"
           >
             Start Your Project Today
-          </motion.button>
+          </motion.a>
         </motion.div>
+      </motion.section>
+
+      {/* Booking Section */}
+      <motion.section
+        id="booking"
+        className="px-6 py-20 bg-gradient-to-br from-black via-red-950 to-black text-white relative overflow-hidden"
+      >
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.35, 0.2] }}
+          transition={{ duration: 8, repeat: Infinity }}
+          className="absolute -top-24 -left-24 w-80 h-80 bg-red-500/20 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{ scale: [1.2, 1, 1.2], opacity: [0.15, 0.3, 0.15] }}
+          transition={{ duration: 10, repeat: Infinity }}
+          className="absolute -bottom-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl"
+        />
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center max-w-4xl mx-auto mb-16"
+          >
+            <p className="text-red-300 uppercase tracking-[0.35em] text-sm font-bold mb-4">Book The Studio</p>
+            <h2 className="text-5xl md:text-6xl font-black mb-6">Reserve Your Session</h2>
+            <p className="text-lg md:text-xl text-gray-200 leading-relaxed">
+              Choose the service you need, send your preferred time, and our team will confirm the studio slot, engineer availability, and session plan.
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-3 gap-8 mb-14">
+            {[
+              {
+                step: "01",
+                title: "Pick Your Session",
+                description: "Recording, mixing, mastering, beat production, rental, or artist development."
+              },
+              {
+                step: "02",
+                title: "Send The Details",
+                description: "Tell us your preferred date, session length, number of artists, and what you want to create."
+              },
+              {
+                step: "03",
+                title: "Confirm & Create",
+                description: "We confirm availability, prepare the room, and get everything ready before you arrive."
+              }
+            ].map((bookingStep, index) => (
+              <motion.div
+                key={bookingStep.step}
+                initial={{ opacity: 0, y: 80 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: index * 0.15 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8 }}
+                className="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-8"
+              >
+                <div className="text-red-300 text-sm font-black tracking-widest mb-6">{bookingStep.step}</div>
+                <h3 className="text-2xl font-bold mb-4">{bookingStep.title}</h3>
+                <p className="text-gray-300 leading-relaxed">{bookingStep.description}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 gap-6 bg-white rounded-3xl p-8 md:p-10 text-gray-900 shadow-2xl"
+          >
+            <div>
+              <h3 className="text-3xl font-black mb-4">What To Include</h3>
+              <p className="text-gray-600 mb-6">
+                The more detail you share, the faster we can lock in the right room, engineer, and setup for your sound.
+              </p>
+              <div className="grid gap-3">
+                {[
+                  "Preferred date and time",
+                  "Session type and estimated hours",
+                  "Number of artists or guests",
+                  "References, demos, or project goals"
+                ].map((detail, index) => (
+                  <motion.div
+                    key={detail}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-center gap-3"
+                  >
+                    <span className="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center font-bold">✓</span>
+                    <span className="font-semibold">{detail}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-gray-950 rounded-2xl p-8 text-white">
+              <h3 className="text-2xl font-bold mb-4">Ready To Book?</h3>
+              <p className="text-gray-300 mb-8">
+                Use the booking form below or contact us directly. We handle recording sessions, rehearsals, writing camps, and full-day studio rental.
+              </p>
+              <motion.a
+                href="#contact"
+                whileHover={{ scale: 1.05, backgroundColor: "#dc2626" }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-block bg-red-500 text-white px-8 py-4 rounded-full font-bold tracking-wide hover:bg-red-600 transition-all duration-300"
+              >
+                Open Booking Form
+              </motion.a>
+            </div>
+          </motion.div>
+        </div>
       </motion.section>
 
       {/* Interactive Gallery Section */}
@@ -1286,7 +1409,7 @@ function App() {
               viewport={{ once: true }}
               className="text-gray-300 text-lg mb-8 leading-relaxed"
             >
-              Ready to bring your musical vision to life? Get in touch with us and let's discuss how we can help you create something extraordinary.
+              Ready to bring your musical vision to life? Send us your session details and we will confirm availability, setup, and next steps.
             </motion.p>
             
             <motion.form
@@ -1336,6 +1459,51 @@ function App() {
                   />
                 </motion.div>
               </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <motion.div
+                  whileFocus={{ scale: 1.02 }}
+                  className="relative"
+                >
+                  <select
+                    name="sessionType"
+                    value={formData.sessionType}
+                    onChange={handleChange}
+                    className="w-full p-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all duration-300"
+                  >
+                    <option value="" className="text-gray-900">Choose session type</option>
+                    {sessionTypes.map(sessionType => (
+                      <option key={sessionType} value={sessionType} className="text-gray-900">
+                        {sessionType}
+                      </option>
+                    ))}
+                  </select>
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileFocus={{ width: "100%" }}
+                    className="absolute bottom-0 left-0 h-0.5 bg-red-500 transition-all duration-300"
+                  />
+                </motion.div>
+
+                <motion.div
+                  whileFocus={{ scale: 1.02 }}
+                  className="relative"
+                >
+                  <input
+                    type="date"
+                    name="preferredDate"
+                    aria-label="Preferred session date"
+                    value={formData.preferredDate}
+                    onChange={handleChange}
+                    className="w-full p-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white placeholder-gray-400 outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all duration-300"
+                  />
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileFocus={{ width: "100%" }}
+                    className="absolute bottom-0 left-0 h-0.5 bg-red-500 transition-all duration-300"
+                  />
+                </motion.div>
+              </div>
               
               <motion.div
                 whileFocus={{ scale: 1.02 }}
@@ -1343,7 +1511,7 @@ function App() {
               >
                 <textarea
                   name="message"
-                  placeholder="Tell us about your project..."
+                  placeholder="Tell us the session length, number of artists, goals, and any special setup..."
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
@@ -1368,7 +1536,7 @@ function App() {
                   transition={{ duration: 0.5 }}
                   className="absolute inset-0 bg-white/20 skew-x-12"
                 />
-                <span className="relative z-10">SEND MESSAGE</span>
+                <span className="relative z-10">REQUEST BOOKING</span>
               </motion.button>
               
               {/* Submission Message */}
