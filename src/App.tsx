@@ -225,7 +225,7 @@ function App() {
                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                 className="w-16 h-16 border-4 border-white border-t-transparent rounded-full mx-auto mb-4"
               />
-              KK STUDIOS
+              APEX-STUDIOS
             </motion.div>
           </motion.div>
         )}
@@ -242,7 +242,7 @@ function App() {
           animate={{ opacity: 1, x: 0 }}
           className="text-2xl font-bold tracking-widest text-white"
         >
-          KK Studios
+          apex-studios
         </motion.div>
         
         {/* Desktop Menu */}
@@ -332,7 +332,7 @@ function App() {
             transition={{ delay: 1, duration: 1, type: "spring" }}
             className="text-6xl md:text-8xl font-black tracking-wider mb-6"
           >
-            KK STUDIOS
+            APEX-STUDIOS
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 50 }}
@@ -406,7 +406,7 @@ function App() {
           <motion.img
             whileHover={{ scale: 1.05 }}
             src="/images.png"
-            alt="KK Studios"
+            alt="apex-studios"
             className="w-full h-auto object-cover rounded-2xl shadow-2xl transition-transform duration-500"
           />
           <motion.div
@@ -437,7 +437,7 @@ function App() {
             viewport={{ once: true }}
             className="text-6xl font-black mb-6 bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent"
           >
-            KK Studios
+            apex-studios
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -767,7 +767,7 @@ function App() {
           viewport={{ once: true }}
           className="text-center text-xl text-gray-700 max-w-4xl mx-auto mb-16 relative z-10"
         >
-          From topping artists to rising stars, KK Studios offers a full spectrum of professional services designed to elevate your sound and brand.
+          From topping artists to rising stars, apex-studios offers a full spectrum of professional services designed to elevate your sound and brand.
         </motion.p>
         
         <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto relative z-10">
@@ -1203,7 +1203,7 @@ function App() {
           viewport={{ once: true }}
           className="text-center text-xl text-gray-600 max-w-4xl mx-auto mb-16"
         >
-          Stay in the loop with our latest music drops, studio collabs, events, and behind-the-scenes moments that define the KK Studios experience.
+          Stay in the loop with our latest music drops, studio collabs, events, and behind-the-scenes moments that define the apex-studios experience.
         </motion.p>
         
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
@@ -1591,7 +1591,7 @@ function App() {
                   className="flex items-center space-x-3"
                 >
                   <i className="fas fa-envelope text-red-500"></i>
-                  <span>hello@kkstudios.rw</span>
+                  <span>hello@apex-studios.rw</span>
                 </motion.div>
                 <motion.div
                   whileHover={{ x: 10 }}
@@ -1663,7 +1663,7 @@ function App() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-bold mb-4">KK Studios</h3>
+              <h3 className="text-2xl font-bold mb-4">apex-studios</h3>
               <p className="text-gray-400 leading-relaxed">
                 Professional music production, recording, and artist development in the heart of Kigali.
               </p>
@@ -1741,7 +1741,7 @@ function App() {
             viewport={{ once: true }}
             className="border-t border-gray-800 pt-6 text-center text-gray-400"
           >
-            <p>&copy; {new Date().getFullYear()} KK Studios • Designed by CircuitNotion • All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} apex-studios • Designed by CircuitNotion • All rights reserved.</p>
           </motion.div>
         </div>
       </motion.footer>
